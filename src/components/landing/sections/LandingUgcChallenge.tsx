@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -10,7 +11,60 @@ const rewards = [
   "Soi da chuyên sâu tại đích",
 ];
 
+const API_BASE = "https://be-babes.ftes.cloud";
+
 export function LandingUgcChallenge() {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [socialLink, setSocialLink] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError(null);
+    setMessage(null);
+
+    if (!fullName.trim() || !email.trim()) {
+      setError("Vui lòng nhập họ tên và email.");
+      return;
+    }
+
+    setLoading(true);
+
+    const sessionId =
+      typeof window !== "undefined"
+        ? (window as any).__babesSessionId || sessionStorage.getItem("babes_session_id") || undefined
+        : undefined;
+
+    try {
+      const res = await fetch(`${API_BASE}/api/contact/submit`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: fullName.trim(),
+          email: email.trim(),
+          sessionId: sessionId ? sessionId : null,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.message || "Đã có lỗi xảy ra, vui lòng thử lại.");
+      }
+
+      setMessage("Đăng ký thành công! Chúng tôi sẽ liên hệ với bạn sớm.");
+      setFullName("");
+      setEmail("");
+      setSocialLink("");
+    } catch (err: any) {
+      setError(err.message || "Đã có lỗi xảy ra, vui lòng thử lại.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <section className="py-12 md:py-[96px] bg-white overflow-hidden" id="ugc-challenge">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
@@ -93,7 +147,7 @@ export function LandingUgcChallenge() {
           <h3 className="text-lg sm:text-[20px] lg:text-[24px] font-medium mb-6 sm:mb-8">
             Đăng ký tham gia ngay
           </h3>
-          <form className="space-y-5 sm:space-y-6" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-5 sm:space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="text-[10px] sm:text-[12px] uppercase tracking-[0.05em] font-medium text-[#41454d] block mb-2">
                 Họ và tên
@@ -102,6 +156,9 @@ export function LandingUgcChallenge() {
                 className="w-full bg-transparent border-0 border-b border-[#737968] focus:ring-0 focus:border-[#6FA234] transition-colors py-3 text-sm sm:text-[14px] outline-none"
                 placeholder="Nguyễn Văn A"
                 type="text"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required
               />
             </div>
             <div>
@@ -112,16 +169,40 @@ export function LandingUgcChallenge() {
                 className="w-full bg-transparent border-0 border-b border-[#737968] focus:ring-0 focus:border-[#6FA234] transition-colors py-3 text-sm sm:text-[14px] outline-none"
                 placeholder="example@gmail.com"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
+            <div>
+              <label className="text-[10px] sm:text-[12px] uppercase tracking-[0.05em] font-medium text-[#41454d] block mb-2">
+                Social Link (TikTok/IG)
+              </label>
+              <input
+                className="w-full bg-transparent border-0 border-b border-[#737968] focus:ring-0 focus:border-[#6FA234] transition-colors py-3 text-sm sm:text-[14px] outline-none"
+                placeholder="instagram.com/yourhandle"
+                type="text"
+                value={socialLink}
+                onChange={(e) => setSocialLink(e.target.value)}
+              />
+            </div>
+
+            {error && (
+              <p className="text-sm text-red-600">{error}</p>
+            )}
+            {message && (
+              <p className="text-sm text-green-700">{message}</p>
+            )}
+
             <button
               className={cn(
                 "w-full bg-[#3e6a00] text-white py-4 sm:py-5 rounded-full font-medium text-sm sm:text-[16px] lg:text-[18px]",
-                "hover:opacity-90 transition-opacity mt-6 sm:mt-8"
+                "hover:opacity-90 transition-opacity mt-6 sm:mt-8 disabled:opacity-50 disabled:cursor-not-allowed"
               )}
               type="submit"
+              disabled={loading}
             >
-              Gửi đăng ký
+              {loading ? "Đang gửi..." : "Gửi đăng ký"}
             </button>
             <p className="text-center text-[10px] text-[#41454d] px-4 sm:px-8">
               Bằng cách đăng ký, bạn đồng ý với các Điều khoản và Chính sách bảo
