@@ -1,6 +1,35 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
+function pad(n: number) {
+  return n.toString().padStart(2, "0");
+}
+
 export function LandingMarathon() {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 });
+
+  useEffect(() => {
+    const target = new Date("2026-05-10T00:00:00+07:00");
+
+    const calculate = () => {
+      const now = new Date().getTime();
+      const distance = target.getTime() - now;
+      if (distance <= 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0 });
+        return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      setTimeLeft({ days, hours, minutes });
+    };
+
+    calculate();
+    const timer = setInterval(calculate, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="py-12 md:py-[96px] bg-[#3e6a00] relative" id="marathon">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -25,17 +54,17 @@ export function LandingMarathon() {
             </div>
             <div className="flex justify-center gap-4 sm:gap-6">
               <div>
-                <div className="text-3xl sm:text-[48px] font-bold leading-none">42</div>
+                <div className="text-3xl sm:text-[48px] font-bold leading-none">{pad(timeLeft.days)}</div>
                 <div className="text-[10px] uppercase mt-1">Days</div>
               </div>
               <div className="text-3xl sm:text-[48px] font-bold opacity-30 leading-none">:</div>
               <div>
-                <div className="text-3xl sm:text-[48px] font-bold leading-none">12</div>
+                <div className="text-3xl sm:text-[48px] font-bold leading-none">{pad(timeLeft.hours)}</div>
                 <div className="text-[10px] uppercase mt-1">Hours</div>
               </div>
               <div className="text-3xl sm:text-[48px] font-bold opacity-30 leading-none">:</div>
               <div>
-                <div className="text-3xl sm:text-[48px] font-bold leading-none">08</div>
+                <div className="text-3xl sm:text-[48px] font-bold leading-none">{pad(timeLeft.minutes)}</div>
                 <div className="text-[10px] uppercase mt-1">Mins</div>
               </div>
             </div>
