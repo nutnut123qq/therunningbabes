@@ -7,6 +7,7 @@ import {
   LandingMarathon,
   LandingTradeIn,
   LandingAbout,
+  LandingAction360,
   LandingFaq,
   LandingFooter,
   LandingFab,
@@ -24,6 +25,7 @@ export function RunningBabeLanding() {
         <LandingMarathon />
         <LandingTradeIn />
         <LandingAbout />
+        <LandingAction360 />
         <LandingFaq />
       </main>
       <LandingFooter />

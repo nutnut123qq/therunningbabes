@@ -6,6 +6,7 @@ export { LandingUgcChallenge } from "./LandingUgcChallenge";
 export { LandingMarathon } from "./LandingMarathon";
 export { LandingTradeIn } from "./LandingTradeIn";
 export { LandingAbout } from "./LandingAbout";
+export { LandingAction360 } from "./LandingAction360";
 export { LandingFaq } from "./LandingFaq";
 export { LandingFooter } from "./LandingFooter";
 export { LandingFab } from "./LandingFab";
