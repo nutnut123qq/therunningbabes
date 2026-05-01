@@ -114,16 +114,6 @@ export function LandingUgcChallenge() {
                 type="email"
               />
             </div>
-            <div>
-              <label className="text-[10px] sm:text-[12px] uppercase tracking-[0.05em] font-medium text-[#41454d] block mb-2">
-                Social Link (TikTok/IG)
-              </label>
-              <input
-                className="w-full bg-transparent border-0 border-b border-[#737968] focus:ring-0 focus:border-[#6FA234] transition-colors py-3 text-sm sm:text-[14px] outline-none"
-                placeholder="instagram.com/yourhandle"
-                type="text"
-              />
-            </div>
             <button
               className={cn(
                 "w-full bg-[#3e6a00] text-white py-4 sm:py-5 rounded-full font-medium text-sm sm:text-[16px] lg:text-[18px]",
