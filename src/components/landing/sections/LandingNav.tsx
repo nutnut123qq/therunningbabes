@@ -16,11 +16,12 @@ export function LandingNav() {
     <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-[#f0f0f0]">
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <a
-          href="#"
-          className="text-lg sm:text-xl font-black uppercase tracking-tighter text-[#181d26]"
-        >
-          BABÉ Stop AKN
+        <a href="#" className="flex items-center">
+          <img
+            src="/brand/logo-babe.svg"
+            alt="BABÉ Laboratorios"
+            className="h-6 sm:h-7 w-auto"
+          />
         </a>
 
         {/* Desktop menu */}

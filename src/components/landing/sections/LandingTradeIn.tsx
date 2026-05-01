@@ -10,12 +10,12 @@ export function LandingTradeIn() {
           {/* Left image */}
           <div className="lg:col-span-5 order-2 lg:order-1">
             <div className="relative bg-[#ede1cc] rounded-xl p-3 sm:p-4 overflow-hidden">
-              <div className="w-full aspect-[4/5] bg-[#d0c5b1]/40 rounded-lg flex items-center justify-center">
-                <span className="text-[#655e4d] text-sm text-center px-4">
-                  BABÉ Stop AKN
-                  <br />
-                  Product Lineup
-                </span>
+              <div className="w-full aspect-[4/5] rounded-lg overflow-hidden">
+                <img
+                  src="/brand/mattifying-fluid.jpg"
+                  alt="BABÉ Stop AKN Mattifying Fluid"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="absolute bottom-4 left-4 right-4 sm:bottom-10 sm:left-10 sm:right-10 bg-white/90 backdrop-blur-md p-4 sm:p-6 rounded-xl border border-white">
                 <p className="text-[10px] sm:text-[11px] text-[#6FA234] uppercase font-medium mb-2">

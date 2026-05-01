@@ -26,7 +26,13 @@ export function LandingFooter() {
         {/* Middle grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 mb-12 sm:mb-16">
           <div>
-            <div className="text-2xl font-bold mb-6">BABÉ</div>
+            <div className="mb-6">
+              <img
+                src="/brand/logo-babe.svg"
+                alt="BABÉ Laboratorios"
+                className="h-8 w-auto invert"
+              />
+            </div>
             <p className="text-[10px] sm:text-xs text-gray-500 leading-relaxed uppercase tracking-widest">
               Dòng sản phẩm chuyên sâu cho da mụn từ Laboratorios BABÉ Tây Ban
               Nha.

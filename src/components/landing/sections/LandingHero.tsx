@@ -53,13 +53,13 @@ export function LandingHero() {
 
           {/* Right: image circle */}
           <div className="w-full md:w-2/5 flex justify-center">
-            <div className="w-56 h-56 sm:w-72 sm:h-72 lg:w-96 lg:h-96 rounded-full border-[24px] sm:border-[32px] border-white/10 flex items-center justify-center relative">
-              <div className="w-4/5 h-4/5 rounded-full bg-white/20 flex items-center justify-center">
-                <span className="text-white/60 text-xs sm:text-sm text-center px-4">
-                  BABÉ Stop AKN
-                  <br />
-                  Product Image
-                </span>
+            <div className="w-56 h-56 sm:w-72 sm:h-72 lg:w-96 lg:h-96 rounded-full border-[24px] sm:border-[32px] border-white/10 flex items-center justify-center relative overflow-hidden">
+              <div className="w-4/5 h-4/5 rounded-full overflow-hidden bg-white/20 flex items-center justify-center">
+                <img
+                  src="/brand/cleansing-gel.jpg"
+                  alt="BABÉ Stop AKN Purifying Cleansing Gel"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none">
                 <circle

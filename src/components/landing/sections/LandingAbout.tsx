@@ -7,12 +7,12 @@ export function LandingAbout() {
         {/* Left image */}
         <div className="relative group">
           <div className="absolute -inset-4 bg-[#3e6a00]/10 rounded-xl transform rotate-3 transition-transform group-hover:rotate-0" />
-          <div className="relative w-full aspect-square bg-[#ddd] rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
-            <span className="text-[#666] text-sm text-center px-4">
-              BABÉ Stop AKN
-              <br />
-              Action 360 — Gel Texture
-            </span>
+          <div className="relative w-full aspect-square rounded-xl shadow-lg overflow-hidden">
+            <img
+              src="/brand/oil-control-pads.jpg"
+              alt="BABÉ Stop AKN Oil Control Pads"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
 
