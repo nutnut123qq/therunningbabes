@@ -16,7 +16,6 @@ const API_BASE = "https://be-babes.ftes.cloud";
 export function LandingUgcChallenge() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
-  const [socialLink, setSocialLink] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -57,7 +56,6 @@ export function LandingUgcChallenge() {
       setMessage("Đăng ký thành công! Chúng tôi sẽ liên hệ với bạn sớm.");
       setFullName("");
       setEmail("");
-      setSocialLink("");
     } catch (err: any) {
       setError(err.message || "Đã có lỗi xảy ra, vui lòng thử lại.");
     } finally {
@@ -174,19 +172,6 @@ export function LandingUgcChallenge() {
                 required
               />
             </div>
-            <div>
-              <label className="text-[10px] sm:text-[12px] uppercase tracking-[0.05em] font-medium text-[#41454d] block mb-2">
-                Social Link (TikTok/IG)
-              </label>
-              <input
-                className="w-full bg-transparent border-0 border-b border-[#737968] focus:ring-0 focus:border-[#6FA234] transition-colors py-3 text-sm sm:text-[14px] outline-none"
-                placeholder="instagram.com/yourhandle"
-                type="text"
-                value={socialLink}
-                onChange={(e) => setSocialLink(e.target.value)}
-              />
-            </div>
-
             {error && (
               <p className="text-sm text-red-600">{error}</p>
             )}
